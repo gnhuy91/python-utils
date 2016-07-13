@@ -14,6 +14,7 @@ Note: There always exist a solution.
 TODO: use `pytest` or the likes to run tests more easily.
 '''
 
+
 def balanceSum(A):
     # Slow performance, need optimization
 
@@ -21,13 +22,14 @@ def balanceSum(A):
     # can not be 0 or N, checking for them is pointless.
     # Also iterate from 1->N-1 is obviously faster than 0->N or 1->N+1.
     for i in range(1, len(A)):
-        left_sum = sum(A[:i-1])
+        left_sum = sum(A[:i - 1])
         right_sum = sum(A[i:])
 
         if left_sum == right_sum:
             return i
 
     return None
+
 
 def balanceSum2(A):
     # currently is wrong
@@ -39,36 +41,40 @@ def balanceSum2(A):
         if left_sum == right_sum:
             return i
 
-        left_sum += A[i-1]
+        left_sum += A[i - 1]
         right_sum -= A[i]
 
         print i, left_sum, right_sum
 
     return None
 
+
 def test_one(func):
-    inp = [4,1,2,3,3]
+    inp = [4, 1, 2, 3, 3]
     out = 3
 
     if out != func(inp):
         return False
     return True
 
+
 def test_two(func):
-    inp = [3,1,2,1]
+    inp = [3, 1, 2, 1]
     out = 2
 
     if out != func(inp):
         return False
     return True
+
 
 def test_three(func):
-    inp = [3,1,3,1]
+    inp = [3, 1, 3, 1]
     out = 2
 
     if out != func(inp):
         return False
     return True
+
 
 def main():
     test_func = balanceSum
