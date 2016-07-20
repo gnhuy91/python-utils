@@ -16,11 +16,11 @@ TODO: use `pytest` or the likes to run tests more easily.
 
 
 def balanceSum(A):
-    # Slow performance, need optimization
+    # O(N)
 
-    # Iterate from 1->N-1 instead of 0->N or 1->N+1, b/c the `balance` index
+    # Iterate from 1->N instead of 0->N or 1->N+1, b/c the `balance` index
     # can not be 0 or N, checking for them is pointless.
-    # Also iterate from 1->N-1 is obviously faster than 0->N or 1->N+1.
+    # Also iterate from 1->N is obviously faster than 0->N or 1->N+1.
     for i in range(1, len(A)):
         left_sum = sum(A[:i - 1])
         right_sum = sum(A[i:])
@@ -32,19 +32,24 @@ def balanceSum(A):
 
 
 def balanceSum2(A):
-    # currently is wrong
-    left_sum, right_sum = 0, sum(A)
+    # O(N)
+    # reduced number of sum()
 
-    for i, value in enumerate(A):
-        i += 1
+    # start from A[1]
+    left_sum, right_sum = A[0], sum(A[2:])
+    if left_sum == right_sum:
+        return 1 + 1  # index starts from 1
 
-        if left_sum == right_sum:
-            return i
+    # print A, left_sum, right_sum
 
-        left_sum += A[i - 1]
+    for i in range(2, len(A)):
+        left_sum += A[i-1]
         right_sum -= A[i]
 
-        print i, left_sum, right_sum
+        # print i+1, " ", left_sum, right_sum
+
+        if left_sum == right_sum:
+            return i + 1
 
     return None
 
@@ -53,7 +58,9 @@ def test_one(func):
     inp = [4, 1, 2, 3, 3]
     out = 3
 
-    if out != func(inp):
+    fout = func(inp)
+    if out != fout:
+        print ("want %s, got %s" % (out, fout))
         return False
     return True
 
@@ -62,7 +69,9 @@ def test_two(func):
     inp = [3, 1, 2, 1]
     out = 2
 
-    if out != func(inp):
+    fout = func(inp)
+    if out != fout:
+        print ("want %s, got %s" % (out, fout))
         return False
     return True
 
@@ -71,16 +80,30 @@ def test_three(func):
     inp = [3, 1, 3, 1]
     out = 2
 
-    if out != func(inp):
+    fout = func(inp)
+    if out != fout:
+        print ("want %s, got %s" % (out, fout))
+        return False
+    return True
+
+
+def test_four(func):
+    inp = [3, 1, 2, 4]
+    out = 3
+
+    fout = func(inp)
+    if out != fout:
+        print ("want %s, got %s" % (out, fout))
         return False
     return True
 
 
 def main():
-    test_func = balanceSum
-    print test_one(test_func)
-    print test_two(test_func)
-    print test_three(test_func)
+    test_func = balanceSum3
+    print test_one(test_func), "\n"
+    print test_two(test_func), "\n"
+    print test_three(test_func), "\n"
+    print test_four(test_func), "\n"
 
 if __name__ == '__main__':
     import sys
