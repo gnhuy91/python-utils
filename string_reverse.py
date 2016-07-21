@@ -6,7 +6,7 @@ def string_reverse(s):
     # O(n)
 
     r = []
-    for i in range(len(s) - 1, -1, -1):
+    for i in xrange(len(s) - 1, -1, -1):
         r.append(s[i])
 
     return ''.join(r)

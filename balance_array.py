@@ -23,7 +23,7 @@ def balanceSum(A):
     # Also iterate from 1->N-1 is obviously faster than 0->N or 1->N+1.
 
     # print A
-    for i in range(1, len(A) - 1):
+    for i in xrange(1, len(A) - 1):
         left_sum = sum(A[:i])
         right_sum = sum(A[i + 1:])
 
@@ -46,7 +46,7 @@ def balanceSum2(A):
 
     # print A, left_sum, right_sum
 
-    for i in range(2, len(A) - 1):
+    for i in xrange(2, len(A) - 1):
         left_sum += A[i - 1]
         right_sum -= A[i]
 
@@ -63,6 +63,8 @@ def test_one(func):
     out = 3
 
     fout = func(inp)
+    print inp, '->', fout
+
     if out != fout:
         print ("want %s, got %s" % (out, fout))
         return False
@@ -74,6 +76,8 @@ def test_two(func):
     out = 2
 
     fout = func(inp)
+    print inp, '->', fout
+
     if out != fout:
         print ("want %s, got %s" % (out, fout))
         return False
@@ -85,6 +89,8 @@ def test_three(func):
     out = 2
 
     fout = func(inp)
+    print inp, '->', fout
+
     if out != fout:
         print ("want %s, got %s" % (out, fout))
         return False
@@ -96,6 +102,8 @@ def test_four(func):
     out = 3
 
     fout = func(inp)
+    print inp, '->', fout
+
     if out != fout:
         print ("want %s, got %s" % (out, fout))
         return False
@@ -103,7 +111,7 @@ def test_four(func):
 
 
 def main():
-    test_func = balanceSum2
+    test_func = balanceSum
     print test_one(test_func), "\n"
     print test_two(test_func), "\n"
     print test_three(test_func), "\n"
