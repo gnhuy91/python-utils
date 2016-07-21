@@ -16,23 +16,27 @@ TODO: use `pytest` or the likes to run tests more easily.
 
 
 def balanceSum(A):
-    # O(N)
+    # O(N^2)
 
     # Iterate from 1->N-1 instead of 0->N or 1->N+1, b/c the `balance` index
     # can not be 0 or N, checking for them is pointless.
     # Also iterate from 1->N-1 is obviously faster than 0->N or 1->N+1.
+
+    # print A
     for i in range(1, len(A) - 1):
-        left_sum = sum(A[:i - 1])
-        right_sum = sum(A[i:])
+        left_sum = sum(A[:i])
+        right_sum = sum(A[i + 1:])
+
+        # print i, " ", left_sum, right_sum
 
         if left_sum == right_sum:
-            return i
+            return i + 1  # index starts from 1
 
     return None
 
 
 def balanceSum2(A):
-    # O(N)
+    # O(2N)
     # reduced number of sum()
 
     # start from A[1]
