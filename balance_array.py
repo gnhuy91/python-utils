@@ -18,10 +18,10 @@ TODO: use `pytest` or the likes to run tests more easily.
 def balanceSum(A):
     # O(N)
 
-    # Iterate from 1->N instead of 0->N or 1->N+1, b/c the `balance` index
+    # Iterate from 1->N-1 instead of 0->N or 1->N+1, b/c the `balance` index
     # can not be 0 or N, checking for them is pointless.
-    # Also iterate from 1->N is obviously faster than 0->N or 1->N+1.
-    for i in range(1, len(A)):
+    # Also iterate from 1->N-1 is obviously faster than 0->N or 1->N+1.
+    for i in range(1, len(A) - 1):
         left_sum = sum(A[:i - 1])
         right_sum = sum(A[i:])
 
@@ -42,11 +42,11 @@ def balanceSum2(A):
 
     # print A, left_sum, right_sum
 
-    for i in range(2, len(A)):
-        left_sum += A[i-1]
+    for i in range(2, len(A) - 1):
+        left_sum += A[i - 1]
         right_sum -= A[i]
 
-        # print i+1, " ", left_sum, right_sum
+        # print i + 1, " ", left_sum, right_sum
 
         if left_sum == right_sum:
             return i + 1
@@ -99,7 +99,7 @@ def test_four(func):
 
 
 def main():
-    test_func = balanceSum3
+    test_func = balanceSum2
     print test_one(test_func), "\n"
     print test_two(test_func), "\n"
     print test_three(test_func), "\n"
