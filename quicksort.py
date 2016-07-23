@@ -16,9 +16,7 @@ def quick_sort(arr, l, r):
         while arr[j] > x:
             j -= 1
         if i <= j:
-            tmp = arr[i]
-            arr[i] = arr[j]
-            arr[j] = tmp
+            arr[i], arr[j] = arr[j], arr[i]
             i += 1
             j -= 1
 
