@@ -4,8 +4,7 @@ QuickSort implementation
 
 
 def quick_sort(arr, l, r):
-    i = l
-    j = r
+    i, j = l, r
     x = arr[(l + r) / 2]
 
     if len(arr) == 0:
