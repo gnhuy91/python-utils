@@ -49,6 +49,37 @@ def InsertNth(head, data, position):
     return head
 
 
+def Delete(head, position):
+    '''
+    Delete Node at a given position in a linked list,
+    return back the head of the linked list in the below method.
+    '''
+
+    if position == 0:
+        head = head.next
+
+    # start from 0 so we can save current node and its next node to
+    # prev node and current node when i start increasing from 1.
+    i = 0
+    prev_node = head
+    curr_node = head
+
+    while True:
+        if i == position:
+            # Replace prev node's next with curr node's next,
+            # so that prev node's next to longer point to the node
+            # we want to delete.
+            prev_node.next = curr_node.next
+            break
+
+        else:
+            prev_node = curr_node
+            curr_node = curr_node.next
+            i += 1
+
+    return head
+
+
 def main():
     n = Node(1, Node(2))
     Insert(n, 3)
