@@ -25,23 +25,28 @@ def Insert(head, data):
 
 
 def InsertNth(head, data, position):
-    # WIP
     if not head:
         head = Node(data)
 
-    if posistion == 0:
-        llist = Node(data, head)
+    if position == 0:
+        head = Node(data, head)
     else:
+        # start from 1
         i = 1
+        current_node = head
+
         while True:
             if i == position:
-                # head.next
+                # Insert new node between current node and its next node.
+                new_node = Node(data, current_node.next)
+                current_node.next = new_node
                 break
+            else:
+                # keep moving to next node until meet position
+                current_node = current_node.next
+                i += 1
 
-            i += 1
-
-    return llist
-
+    return head
 
 
 def main():
