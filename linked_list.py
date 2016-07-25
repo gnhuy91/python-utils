@@ -14,11 +14,14 @@ def print_list(head):
 def Insert(head, data):
     if not isinstance(head, Node):
         head = Node(data=data)
+
+    # if next_node is a Node instance, keep moving
+    if isinstance(head.next, Node):
+        Insert(head.next, data)
+    # reached end of the linked-list,
+    # insert data as next_node of this last node
     else:
-        if head.next:
-            Insert(head.next, data)
-        else:
-            head.next = Node(data=data)
+        head.next = Node(data=data)
 
 
 def main():
