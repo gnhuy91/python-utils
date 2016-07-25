@@ -12,6 +12,10 @@ def print_list(head):
 
 
 def Insert(head, data):
+    '''
+    Not working, see InsertNth
+    '''
+
     if not isinstance(head, Node):
         head = Node(data=data)
 
@@ -25,6 +29,11 @@ def Insert(head, data):
 
 
 def InsertNth(head, data, position):
+    '''
+    Insert Node at a specific position of a linked list.
+    head input could be None as well for empty list.
+    return back the head of the linked list in the below method.
+    '''
     if not head:
         head = Node(data)
 
